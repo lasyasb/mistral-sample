@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mistral Content Creator</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2em; }
+    textarea { width: 100%; height: 300px; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Mistral AI Content Generator</h1>
+
+  <form method="POST">
+    <label>Topic:</label><br>
+    <input type="text" name="topic" required><br><br>
+
+    <label>Type:</label><br>
+    <select name="type">
+      <option value="blog">Blog</option>
+      <option value="social">Social Media</option>
+      <option value="email">Email</option>
+      <option value="ppt">PowerPoint</option>
+    </select><br><br>
+
+    <label>Tone:</label><br>
+    <select name="tone">
+      <option value="professional">Professional</option>
+      <option value="friendly">Friendly</option>
+      <option value="persuasive">Persuasive</option>
+    </select><br><br>
+
+    <button type="submit">Generate</button>
+  </form>
+
+  {% if content %}
+    <h2>Generated Content:</h2>
+    <textarea readonly>{{ content }}</textarea>
+  {% endif %}
+
+  {% if ppt_link %}
+    <h2>🎉 PPTX Ready:</h2>
+    <a href="{{ url_for('download_file', filename=ppt_link) }}" download>⬇️ Download PowerPoint</a>
+  {% endif %}
+</body>
+</html>
